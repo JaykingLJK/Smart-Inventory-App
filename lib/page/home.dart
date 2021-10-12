@@ -19,8 +19,16 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('HomePage'),
       ),
-
-      // add navigator button here.
+      body: (
+          TextButton(
+            style: TextButton.styleFrom(
+              primary: Colors.blue,
+              onSurface: Colors.red,
+            ),
+            onPressed: () => ListingsPage(),
+            child: const Text('Listings Page'),
+          )
+      ),// add navigator button here.
 
     );
   }

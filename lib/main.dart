@@ -7,6 +7,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:myapp/api/listing_service.dart';
+import 'package:myapp/page/home.dart';
 import 'package:myapp/page/listings.dart';
 import 'api/listing_service.dart';
 import 'model/listing_model.dart';
@@ -25,7 +26,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Fetch Data Example',
+      title: 'Smart-Inventory-System',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

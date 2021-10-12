@@ -46,6 +46,3 @@ class ListingsPage extends StatelessWidget{
     );
   }
 }
-
-class MateralPageRoute {
-}
