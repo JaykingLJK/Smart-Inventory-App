@@ -45,6 +45,10 @@ class ListingDetail extends StatelessWidget{
                   title: const Text("Item Amount"),
                   subtitle: Text(listing.amount.toString()),
                 ),
+                ListTile(
+                  title: const Text("Expiry Date"),
+                  subtitle: Text(listing.expiryDate),
+                )
               ],
             ),
           ),

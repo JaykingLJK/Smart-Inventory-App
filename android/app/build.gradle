@@ -43,7 +43,8 @@ android {
 
     buildTypes {
         debug {
-            testConverageEnabled true
+            testConverageEnabled false
+            debuggable true
         }
         release {
             // TODO: Add your own signing config for the release build.
