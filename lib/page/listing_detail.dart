@@ -5,7 +5,7 @@ import '../model/listing_model.dart';
 
 class ListingDetail extends StatelessWidget{
   final Listing listing;
-  final ListingService httpService = ListingService();
+  final ListingService listingService = ListingService();
   ListingDetail({Key? key,
     required this.listing
 }) : super(key: key);
@@ -18,7 +18,7 @@ class ListingDetail extends StatelessWidget{
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          httpService.takeListing(listing.item, listing.amount);
+          listingService.takeListing(listing.item, listing.amount);
           Navigator.of(context).pop();
         },
         child: const Icon(
