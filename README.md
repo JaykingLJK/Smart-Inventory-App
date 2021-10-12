@@ -25,16 +25,19 @@ Page 3: Check in/out Option page                => (page 4, 7)
 
 Page 4: Check in Option page                    => (page 5, 6)          
 
-Page 5: Check in manually page                                          
+Page 5: Check in manually page                  name, amount, expiryDate,                        
 
 Page 6: Check in with camera page                                       
 
 Page 7: Check out Option page                   => (page 8, 9)          
 
-Page 8: Check out manually page                                         
+Page 8: Check out manually similar to Page 1                                      
 
-Page 9: Check out with camera page                                      
-
-
+Page 9: Check out with camera page
 
 
+4, 7, 6, 9: option page and camera: Eleen
+
+5, 8: manually check in/out: MY
+
+models design and api call: JK

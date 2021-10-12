@@ -13,14 +13,14 @@ class ListingService {
     Response res = await http.delete(Uri.parse(urlListings), body: {"item": item, "amount": amount});
     if (res.statusCode == 200){
       Map<String, dynamic> body = jsonDecode(res.body);
-      String item1 = body["item"];
-      int amount1 = body["amount"];
+      String itemItem = body["item"];
+      int amountAmount = body["amount"];
       List<Listing> listings = body["lst"].map((dynamic item) => Listing.fromJson(item)).toList();
       String notification = "";
       for(var listing in listings){
         notification += "${listing.amount} of ${listing.item} expiring by ${listing.expiryDate} have been taken out.\n";
       }
-      return "$amount1 $item1 have been taken out.\ndetails:\n" + notification;
+      return "$amountAmount of $itemItem have been taken out.\ndetails:\n" + notification;
     }
     else{
       return "Error when taking out the listing";
