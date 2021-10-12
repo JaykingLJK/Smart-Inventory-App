@@ -6,10 +6,10 @@ import 'dart:convert';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:myapp/http_service.dart';
-import 'package:myapp/listings.dart';
-import 'http_service.dart';
-import 'listing_model.dart';
+import 'package:myapp/api/listing_service.dart';
+import 'package:myapp/page/listings.dart';
+import 'api/listing_service.dart';
+import 'model/listing_model.dart';
 
 void main() => runApp(const MyApp());
 
@@ -30,7 +30,7 @@ class _MyAppState extends State<MyApp> {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home: ListingsPage(),
+      home: ListingsPage(), // Change the home page here.
     );
   }
 }
