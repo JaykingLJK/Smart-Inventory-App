@@ -19,7 +19,6 @@ class ListingDetail extends StatelessWidget{
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-
           Navigator.of(context).pop();
         },
         child: const Icon(
