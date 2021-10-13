@@ -19,19 +19,7 @@ class ListingDetail extends StatelessWidget{
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          showSimpleNotification(
-              Text("Subscribe to FilledStacks"),
-              background: Colors.purple,
-              autoDismiss: false,
-              trailing: Builder(builder: (context) {
-                return FlatButton(
-                    textColor: Colors.yellow,
-                    onPressed: () {
-                      OverlaySupportEntry.of(context)!.dismiss();
-                    },
-                    child: Text('Dismiss'));
-              }),
-          );
+
           Navigator.of(context).pop();
         },
         child: const Icon(
@@ -49,10 +37,6 @@ class ListingDetail extends StatelessWidget{
                 ListTile(
                   title: const Text("Item Name"),
                   subtitle: Text(listing.item),
-                ),
-                ListTile(
-                  title: const Text("Item Id"),
-                  subtitle: Text(listing.id.toString()),
                 ),
                 ListTile(
                   title: const Text("Item Amount"),

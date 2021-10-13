@@ -29,7 +29,6 @@ class HomePage extends StatelessWidget {
             child: const Text('Listings Page'),
           )
       ),// add navigator button here.
-
     );
   }
 

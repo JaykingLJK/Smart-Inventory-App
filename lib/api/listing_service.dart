@@ -9,6 +9,7 @@ import '../model/listing_model.dart';
 
 class ListingService {
   final String urlListings = "http://54.151.224.79:5000/listings";
+  final String urlListingDelete = "http://54.151.224.79:5000/listingdelete";
 
 
   Future<List<Listing>> getListings() async {
@@ -30,9 +31,12 @@ class ListingService {
 
 
 
-  Future<String> takeListing(String item, int amount) async {
+  String takeListing(String item, int amount) {
     var reqBody = jsonEncode({"item": item, "amount": amount});
-    Response res = await http.delete(Uri.parse(urlListings), body: reqBody);
+    Response res = Response("Default Response", 200);
+    http.delete(Uri.parse(urlListings), body: reqBody).then((value){
+      res = value;
+    });
     if (res.statusCode == 200){
       Map<String, dynamic> resBody = jsonDecode(res.body);
       String itemItem = resBody["item"];
@@ -44,6 +48,22 @@ class ListingService {
         notification += "${listing.amount} of ${listing.item} expiring by ${listing.expiryDate} have been taken out.\n";
       }
       return "$amountAmount of $itemItem left after checking out.\ndetails:\n" + notification;
+    }
+    else{
+      return "Error when taking out the listing";
+    }
+  }
+
+  String deleteListing(Listing listing) {
+    var reqBody = jsonEncode({"item":listing.item, "amount":listing.amount, "id":listing.id});
+    Response res = Response("Default Response", 200);
+    http.delete(Uri.parse(urlListings), body: reqBody).then((value){
+      res = value;
+    });
+    if (res.statusCode == 200){
+      Map<String, dynamic> resBody = jsonDecode(res.body);
+      String notification = "${listing.amount} of ${listing.item} expiring by ${listing.expiryDate} have been deleted.\n";
+      return "0 of ${listing.item} left after checking out.\ndetails:\n" + notification;
     }
     else{
       return "Error when taking out the listing";

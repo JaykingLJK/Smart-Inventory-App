@@ -26,7 +26,6 @@ class ListingsPage extends StatelessWidget{
                       (Listing listing) => ListTile(
                         title: Text(listing.item),
                         subtitle: Text(listing.amount.toString()),
-                        isThreeLine: true,
                         trailing: Text(listing.expiryDate),
                         onTap: () => Navigator.of(context).push(
                           MaterialPageRoute(
