@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/api/listing_service.dart';
+import 'package:overlay_support/overlay_support.dart';
 
 import '../model/listing_model.dart';
 
@@ -18,7 +19,19 @@ class ListingDetail extends StatelessWidget{
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          listingService.takeListing(listing.item, listing.amount);
+          showSimpleNotification(
+              Text("Subscribe to FilledStacks"),
+              background: Colors.purple,
+              autoDismiss: false,
+              trailing: Builder(builder: (context) {
+                return FlatButton(
+                    textColor: Colors.yellow,
+                    onPressed: () {
+                      OverlaySupportEntry.of(context)!.dismiss();
+                    },
+                    child: Text('Dismiss'));
+              }),
+          );
           Navigator.of(context).pop();
         },
         child: const Icon(

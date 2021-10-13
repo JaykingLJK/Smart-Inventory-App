@@ -30,7 +30,7 @@ class ListingService {
 
 
 
-  Future<String> takeListing(String item, int amount) async{
+  Future<String> takeListing(String item, int amount) async {
     var reqBody = jsonEncode({"item": item, "amount": amount});
     Response res = await http.delete(Uri.parse(urlListings), body: reqBody);
     if (res.statusCode == 200){

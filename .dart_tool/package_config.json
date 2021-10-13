@@ -116,6 +116,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "overlay_support",
+      "rootUri": "file:///D:/flutter/.pub-cache/hosted/pub.dartlang.org/overlay_support-1.2.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "path",
       "rootUri": "file:///D:/flutter/.pub-cache/hosted/pub.dartlang.org/path-1.8.0",
       "packageUri": "lib/",
@@ -182,7 +188,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2021-10-12T14:36:38.494031Z",
+  "generated": "2021-10-12T17:15:46.783175Z",
   "generator": "pub",
   "generatorVersion": "2.14.3"
 }
