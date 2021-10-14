@@ -1,5 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math';
+import 'package:intl/intl.dart';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
@@ -30,6 +32,27 @@ class ListingService {
   }
 
 
+  String addListing(String item, int amount, DateTime expiryDate){
+    String notification = "";
+    Response res = Response("Default Response", 300);
+    DateFormat dateFormat = DateFormat("yyyy-MM-dd HH:mm:ss");
+    String expiry_date = dateFormat.format(expiryDate);
+    var reqBody = jsonEncode({"item": item, "amount": amount, "expiry_date": expiry_date});
+    http.post(Uri.parse(urlListings), body: reqBody).then((value){
+      res = value;
+    });
+    if (res.statusCode == 200){
+      Map<String, dynamic> resBody = jsonDecode(res.body);
+      String itemItem = resBody["item"];
+      int amountAmount = resBody["amount"];
+      String dateDate = resBody["expiry_date"];
+      return "$amountAmount of $itemItem expiring by $dateDate have been added to the inventory";
+    }
+    else{
+      return "Error when adding the listing.";
+    }
+  }
+
 
   String takeListing(String item, int amount) {
     var reqBody = jsonEncode({"item": item, "amount": amount});
@@ -50,7 +73,27 @@ class ListingService {
       return "$amountAmount of $itemItem left after checking out.\ndetails:\n" + notification;
     }
     else{
-      return "Error when taking out the listing";
+      return "Error when taking out the listing.";
+    }
+  }
+
+  String updateListing(Listing listing) {
+    String notification = "";
+    Response res = Response("Default Response", 300);
+    DateFormat dateFormat = DateFormat("yyyy-MM-dd HH:mm:ss");
+    var reqBody = jsonEncode({"id": listing.id, "item": listing.item, "amount": listing.amount, "expiry_date": listing.expiryDate});
+    http.put(Uri.parse(urlListings), body: reqBody).then((value){
+      res = value;
+    });
+    if (res.statusCode == 200){
+      Map<String, dynamic> resBody = jsonDecode(res.body);
+      String itemItem = resBody["item"];
+      int amountAmount = resBody["amount"];
+      String dateDate = resBody["expiry_date"];
+      return "$amountAmount of $itemItem expiring by $dateDate have been updated successfully.";
+    }
+    else{
+      return "Error when updating the listing.";
     }
   }
 
@@ -66,7 +109,7 @@ class ListingService {
       return "0 of ${listing.item} left after checking out.\ndetails:\n" + notification;
     }
     else{
-      return "Error when taking out the listing";
+      return "Error when deleting the listing";
     }
   }
 

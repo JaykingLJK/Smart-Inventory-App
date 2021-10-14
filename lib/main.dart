@@ -31,7 +31,7 @@ class _MyAppState extends State<MyApp> {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home: ListingsPage(), // Change the home page here.
+      home: Homepage(), // Change the home page here.
     );
   }
 }

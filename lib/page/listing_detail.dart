@@ -19,6 +19,8 @@ class ListingDetail extends StatelessWidget{
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
+          String delete = listingService.deleteListing(listing);
+          Text(delete);
           Navigator.of(context).pop();
         },
         child: const Icon(
