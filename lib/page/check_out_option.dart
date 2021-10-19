@@ -1,13 +1,13 @@
+import 'package:myapp/page/check_out_manually.dart';
+
 import '../func/scanner.dart';
 import 'package:flutter/material.dart';
 import 'package:myapp/api/listing_service.dart';
 
 import '../model/listing_model.dart';
 
-class CheckInOption extends StatelessWidget {
+class CheckOutOption extends StatelessWidget {
   final Scanner scanner = Scanner();
-
-  CheckInOption({Key? key,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class CheckInOption extends StatelessWidget {
               child: ElevatedButton.icon(
                 onPressed: () => Navigator.of(context).push(
                     MaterialPageRoute(
-                        builder: (context) => CheckInOption()
+                        builder: (context) => CheckOutManually()
                     )
                 )
                 ,

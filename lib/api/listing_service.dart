@@ -14,12 +14,8 @@ class ListingService {
   final String urlListingDelete = "http://54.151.224.79:5000/listingdelete";
 
 
-  Future<List<Listing>> getListings() async {
-    http.Response res = await http.get(
-        Uri.parse(urlListings),
-        headers: {
-          "Access-Control-Allow-Origin": "*"
-        });
+  Future<List<Listing>> getListings() async{
+    http.Response res =  await http.get(Uri.parse(urlListings), headers: {"Access-Control-Allow-Origin": "*"});
     if (res.statusCode == 200){
       List<dynamic> body = jsonDecode(res.body);
       List<Listing> listings = body.map((dynamic item) => Listing.fromJson(item)).toList();

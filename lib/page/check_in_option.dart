@@ -8,9 +8,8 @@ import '../model/listing_model.dart';
 
 class CheckInOption extends StatelessWidget {
   final Scanner scanner = Scanner();
-  final ListingService listingService;
+  ListingService listingService = ListingService();
 
-  CheckInOption({Key? key, required this.listingService,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +34,7 @@ class CheckInOption extends StatelessWidget {
               child: ElevatedButton.icon(
                 onPressed: () => Navigator.of(context).push(
                 MaterialPageRoute(
-                    builder: (context) => CheckInManually(listingService: listingService,)
+                    builder: (context) => CheckInManually()
                 )
                 )
                 ,

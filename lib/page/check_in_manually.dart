@@ -8,10 +8,7 @@ class CheckInManually extends StatelessWidget{
   final TextEditingController itemController = TextEditingController();
   final TextEditingController expiryDateController = TextEditingController();
   final TextEditingController amountController = TextEditingController();
-
-  CheckInManually({Key? key, required this.listingService}) : super(key: key);
-
-  final ListingService listingService;
+  ListingService listingService = ListingService();
 
   @override
   Widget build(BuildContext context){

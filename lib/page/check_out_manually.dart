@@ -8,10 +8,8 @@ class CheckOutManually extends StatelessWidget{
   final TextEditingController itemController = TextEditingController();
   final TextEditingController expiryDateController = TextEditingController();
   final TextEditingController amountController = TextEditingController();
+  ListingService listingService = ListingService();
 
-  CheckOutManually({Key? key}) : super(key: key);
-
-  get listingService => null;
 
   @override
   Widget build(BuildContext context) {
@@ -44,21 +42,17 @@ class CheckOutManually extends StatelessWidget{
       ),
     floatingActionButton: FloatingActionButton(
     onPressed: () {
-    final String item = itemController.text;
-    final String expiryDate = expiryDateController.text;
-    final String amount = amountController.text;
+      String item = itemController.text;
+      String expiryDate = expiryDateController.text;
+      int amount = int.parse(amountController.text);
+      String response = listingService.takeListing(item, amount);
 
-    String response = listingService.takeListing();
-
-    // setState(() {
-    //   _listing = listing;  //unsure of this part
-    //
-    // });
 
     },
     child: const Text("Submit")
 
-    ), //Floating Action Button
-    ); //Scaffold
+    ),
+    )
+    );
   }
 }

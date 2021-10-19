@@ -13,12 +13,10 @@ import 'api/listing_service.dart';
 import 'model/listing_model.dart';
 
 
-late final ListingService listingService;
-void main() => runApp(MyApp(listingService: listingService));
+void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
-  const MyApp({Key? key, required this.listingService}) : super(key: key);
-  final ListingService listingService;
+  const MyApp({Key? key,}) : super(key: key);
 
   @override
   _MyAppState createState() => _MyAppState();
@@ -33,7 +31,7 @@ class _MyAppState extends State<MyApp> {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home: Homepage(listingService: listingService,), // Change the home page here.
+      home: Homepage(), // Change the home page here.
     );
   }
 }

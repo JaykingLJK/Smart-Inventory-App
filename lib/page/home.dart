@@ -3,10 +3,10 @@ import 'package:myapp/api/listing_service.dart';
 import 'package:myapp/model/listing_model.dart';
 import 'package:myapp/page/listings.dart';
 import 'package:myapp/page/check_in_option.dart';
+import 'package:myapp/page/check_out_option.dart';
 
 class Homepage extends StatelessWidget {
-  final ListingService listingService;
-  const Homepage({Key? key, required this.listingService,}) : super(key: key);
+  ListingService listingService = ListingService();
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class Homepage extends StatelessWidget {
                 child: ElevatedButton.icon(
                   onPressed: () => Navigator.of(context).push(
                     MaterialPageRoute(
-                        builder: (context) => CheckInOption(listingService: listingService,)
+                        builder: (context) => CheckInOption()
                     )
                 ),
                   style: ElevatedButton.styleFrom(
@@ -51,10 +51,9 @@ class Homepage extends StatelessWidget {
                 padding: const EdgeInsets.all(40.0),
                 color: Colors.grey[100],
                 child: ElevatedButton.icon(
-                  onPressed: () {
-
-                    // Add onPressed Effect here
-                  },
+                  onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context)=> CheckOutOption())
+                  ),
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size(200, 50),
                     maximumSize: const Size(200, 50),
