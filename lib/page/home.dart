@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/api/listing_service.dart';
+import 'package:myapp/model/listing_model.dart';
 import 'package:myapp/page/listings.dart';
+import 'package:myapp/page/check_in_option.dart';
 
 class Homepage extends StatelessWidget {
-  const Homepage({Key? key}) : super(key: key);
+  final ListingService listingService;
+  const Homepage({Key? key, required this.listingService,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,13 +25,14 @@ class Homepage extends StatelessWidget {
                     fontSize: 18.0,
                   )),
               Container(
-                padding: EdgeInsets.all(40.0),
+                padding: const EdgeInsets.all(40.0),
                 color: Colors.grey[100],
                 child: ElevatedButton.icon(
-                  onPressed: () {
-                    // Add onPressed Effect here
-
-                  },
+                  onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                        builder: (context) => CheckInOption(listingService: listingService,)
+                    )
+                ),
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size(200, 50),
                     maximumSize: const Size(200, 50),
@@ -88,13 +93,6 @@ class Homepage extends StatelessWidget {
                 ),
               ),
             ]),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-
-          // Add onPressed Effect here
-        },
-        child: const Text('Click'),
       ),
     );
   }

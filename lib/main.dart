@@ -12,17 +12,19 @@ import 'package:myapp/page/listings.dart';
 import 'api/listing_service.dart';
 import 'model/listing_model.dart';
 
-void main() => runApp(const MyApp());
+
+late final ListingService listingService;
+void main() => runApp(MyApp(listingService: listingService));
 
 class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key, required this.listingService}) : super(key: key);
+  final ListingService listingService;
 
   @override
   _MyAppState createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -31,7 +33,7 @@ class _MyAppState extends State<MyApp> {
         primarySwatch: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home: Homepage(), // Change the home page here.
+      home: Homepage(listingService: listingService,), // Change the home page here.
     );
   }
 }
