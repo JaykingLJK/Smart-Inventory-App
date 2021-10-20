@@ -49,7 +49,7 @@ class CheckOutManually extends StatelessWidget{
 
 
     },
-    child: const Text("Submit")
+    child: const Text("Confirm")
 
     ),
     )

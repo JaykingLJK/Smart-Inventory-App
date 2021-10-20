@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:myapp/api/listing_service.dart';
 
 import '../model/listing_model.dart';
+import 'camera_screen.dart';
 
 class CheckInOption extends StatelessWidget {
   final Scanner scanner = Scanner();
   ListingService listingService = ListingService();
-
 
   @override
   Widget build(BuildContext context) {
@@ -56,12 +56,10 @@ class CheckInOption extends StatelessWidget {
         padding: const EdgeInsets.all(40.0),
         color: Colors.grey[100],
         child: ElevatedButton.icon(
-          onPressed: () {}
-          // => Navigator.of(context).push(
-              // MaterialPageRoute(
-              //     builder: (context) => CheckInOption()
-              // )
-          // )
+          onPressed: ()
+          async {
+            final String textFromScanner = await scanner.scanBarcodeNormal();
+          }
           ,
           style: ElevatedButton.styleFrom(
             minimumSize: const Size(400, 50),

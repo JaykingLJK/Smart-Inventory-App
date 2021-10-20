@@ -57,7 +57,7 @@ class CheckInManually extends StatelessWidget{
             // });
 
           },
-          child: const Text("Submit")
+          child: const Text("Confirm")
 
       ), //Floating Action Button
     ); //Scaffold
