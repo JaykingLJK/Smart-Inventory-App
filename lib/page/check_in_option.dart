@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:myapp/api/listing_service.dart';
 
 import '../model/listing_model.dart';
-import 'camera_screen.dart';
 
 class CheckInOption extends StatelessWidget {
   final Scanner scanner = Scanner();
@@ -57,8 +56,10 @@ class CheckInOption extends StatelessWidget {
         color: Colors.grey[100],
         child: ElevatedButton.icon(
           onPressed: ()
-          async {
-            final String textFromScanner = await scanner.scanBarcodeNormal();
+          {
+            String item = scanner.scanBarcodeNormal();
+            DateTime expiryDate = DateTime.parse("2021-10-31");
+            listingService.addListing(item, 1, expiryDate);
           }
           ,
           style: ElevatedButton.styleFrom(

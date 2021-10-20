@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:myapp/page/check_out_manually.dart';
 
 import '../func/scanner.dart';
@@ -8,6 +10,7 @@ import '../model/listing_model.dart';
 
 class CheckOutOption extends StatelessWidget {
   final Scanner scanner = Scanner();
+  final ListingService listingService = ListingService();
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +57,10 @@ class CheckOutOption extends StatelessWidget {
               padding: const EdgeInsets.all(40.0),
               color: Colors.grey[100],
               child: ElevatedButton.icon(
-                onPressed: () {}
+                onPressed: () {
+                  String item = scanner.scanBarcodeNormal();
+                  listingService.takeListing(item, 1);
+                }
                 // => Navigator.of(context).push(
                 // MaterialPageRoute(
                 //     builder: (context) => CheckInOption()
