@@ -17,6 +17,7 @@ class CheckOutOption extends StatelessWidget {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text('Check Out Option Page'),
       ),
       body: Center(
@@ -24,12 +25,16 @@ class CheckOutOption extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            const Text('Choose a check-out method',
-                style: TextStyle(
-                  fontSize: 18.0,
+            const Align(
+                alignment: Alignment.center,
+                child: Text('Choose a check-in method',
+                    style: TextStyle(
+                      fontSize: 18.0,
+                    )
                 )
             ),
             Container(
+              alignment: Alignment.center,
               padding: const EdgeInsets.all(40.0),
               color: Colors.grey[100],
               child: ElevatedButton.icon(
@@ -54,6 +59,7 @@ class CheckOutOption extends StatelessWidget {
               ),
             ),
             Container(
+              alignment: Alignment.center,
               padding: const EdgeInsets.all(40.0),
               color: Colors.grey[100],
               child: ElevatedButton.icon(

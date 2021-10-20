@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:myapp/api/listing_service.dart';
@@ -5,10 +7,16 @@ import 'package:myapp/page/listing_detail.dart';
 
 import '../model/listing_model.dart';
 
-class ListingsPage extends StatelessWidget{
+class ListingsPage extends StatefulWidget {
+  @override
+  _ListingsPage createState() => _ListingsPage();
+
+}
+
+class _ListingsPage extends State<ListingsPage>{
 
   final ListingService httpService = ListingService();
-
+  
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -33,7 +41,7 @@ class ListingsPage extends StatelessWidget{
                                   listing: listing,
                               )
                           )
-                        ),
+                        ).then(onGoBack),
                       )
               ).toList(),
             );
@@ -44,4 +52,10 @@ class ListingsPage extends StatelessWidget{
       ),
     );
   }
+
+
+  FutureOr onGoBack(dynamic value) {
+    setState(() {});
+  }
+
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/api/listing_service.dart';
+import 'package:myapp/page/listings.dart';
 import 'package:overlay_support/overlay_support.dart';
 
 import '../model/listing_model.dart';
@@ -19,10 +20,12 @@ class ListingDetail extends StatelessWidget{
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          String delete = listingService.deleteListing(listing);
-          Text(delete);
-          Navigator.of(context).pop();
-        },
+          String response = "Default Response";
+          listingService.deleteListing(listing).then((value){
+            response = value;
+          });
+          Navigator.pop(context, true);
+              },
         child: const Icon(
           Icons.delete,
         ),

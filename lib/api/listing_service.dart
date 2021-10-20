@@ -28,15 +28,11 @@ class ListingService {
   }
 
 
-  String addListing(String item, int amount, DateTime expiryDate){
-    String notification = "";
-    Response res = Response("Default Response", 300);
+  Future<String> addListing(String item, int amount, DateTime expiryDate) async{
     DateFormat dateFormat = DateFormat("yyyy-MM-dd HH:mm:ss");
-    String expiry_date = dateFormat.format(expiryDate);
-    var reqBody = jsonEncode({"item": item, "amount": amount, "expiry_date": expiry_date});
-    http.post(Uri.parse(urlListings), body: reqBody).then((value){
-      res = value;
-    });
+    String expiryDay = dateFormat.format(expiryDate);
+    var reqBody = jsonEncode({"item": item, "amount": amount, "expiry_date": expiryDay});
+    http.Response res = await http.post(Uri.parse(urlListings), body: reqBody);
     if (res.statusCode == 200){
       Map<String, dynamic> resBody = jsonDecode(res.body);
       String itemItem = resBody["item"];
@@ -50,12 +46,9 @@ class ListingService {
   }
 
 
-  String takeListing(String item, int amount) {
+  Future<String> takeListing(String item, int amount) async{
     var reqBody = jsonEncode({"item": item, "amount": amount});
-    Response res = Response("Default Response", 200);
-    http.delete(Uri.parse(urlListings), body: reqBody).then((value){
-      res = value;
-    });
+    http.Response res = await http.delete(Uri.parse(urlListings), body: reqBody);
     if (res.statusCode == 200){
       Map<String, dynamic> resBody = jsonDecode(res.body);
       String itemItem = resBody["item"];
@@ -64,23 +57,19 @@ class ListingService {
       String notification = "";
       for(dynamic _listing in listings){
         Listing listing = Listing.fromJson(_listing);
-        notification += "${listing.amount} of ${listing.item} expiring by ${listing.expiryDate} have been taken out.\n";
+        notification += "${listing.amount} of ${listing.item} expiring by ${listing.expiryDate} left.\n";
       }
-      return "$amountAmount of $itemItem left after checking out.\ndetails:\n" + notification;
+      return "$amountAmount of $itemItem have been taken out.\ndetails:\n" + notification;
     }
     else{
       return "Error when taking out the listing.";
     }
   }
 
-  String updateListing(Listing listing) {
-    String notification = "";
-    Response res = Response("Default Response", 300);
+  Future<String> updateListing(Listing listing) async{
     DateFormat dateFormat = DateFormat("yyyy-MM-dd HH:mm:ss");
     var reqBody = jsonEncode({"id": listing.id, "item": listing.item, "amount": listing.amount, "expiry_date": listing.expiryDate});
-    http.put(Uri.parse(urlListings), body: reqBody).then((value){
-      res = value;
-    });
+    http.Response res = await http.put(Uri.parse(urlListings), body: reqBody);
     if (res.statusCode == 200){
       Map<String, dynamic> resBody = jsonDecode(res.body);
       String itemItem = resBody["item"];
@@ -93,14 +82,10 @@ class ListingService {
     }
   }
 
-  String deleteListing(Listing listing) {
+  Future<String> deleteListing(Listing listing) async{
     var reqBody = jsonEncode({"item":listing.item, "amount":listing.amount, "id":listing.id});
-    Response res = Response("Default Response", 200);
-    http.delete(Uri.parse(urlListings), body: reqBody).then((value){
-      res = value;
-    });
+    http.Response res = await http.delete(Uri.parse(urlListings), body: reqBody);
     if (res.statusCode == 200){
-      Map<String, dynamic> resBody = jsonDecode(res.body);
       String notification = "${listing.amount} of ${listing.item} expiring by ${listing.expiryDate} have been deleted.\n";
       return "0 of ${listing.item} left after checking out.\ndetails:\n" + notification;
     }

@@ -1,15 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:myapp/api/listing_service.dart';
 import 'package:myapp/model/listing_model.dart';
 import 'package:overlay_support/overlay_support.dart';
 
+class CheckInManually extends StatefulWidget{
 
-class CheckInManually extends StatelessWidget{
+  @override
+  _CheckInManually createState() => _CheckInManually();
+
+}
+class _CheckInManually extends State<CheckInManually>{
 
   final TextEditingController itemController = TextEditingController();
-  final TextEditingController expiryDateController = TextEditingController();
   final TextEditingController amountController = TextEditingController();
   ListingService listingService = ListingService();
+  DateTime _myDateTime = DateTime.now();
+  String time = DateTime.now().toString();
 
   @override
   Widget build(BuildContext context){
@@ -33,11 +40,25 @@ class CheckInManually extends StatelessWidget{
                   border: OutlineInputBorder(), hintText: 'Enter the amount of item'),
               controller: amountController,
             ), //TextField
-            TextField(
-              decoration: const InputDecoration(
-                  border: OutlineInputBorder(), hintText: 'Enter the item expiry date'),
-              controller: expiryDateController,
-            ), //TextField
+            Text(
+                time,
+                style: TextStyle(fontSize: 20)
+            ),
+            const SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () async {
+                _myDateTime = (await showDatePicker(
+                  context: context,
+                  initialDate: _myDateTime,
+                  firstDate: DateTime(2018),
+                  lastDate: DateTime(2028),
+                ))!;
+                setState((){
+                  time = DateFormat('yyyy-MM-DD').format(_myDateTime);
+                });
+              },
+              child: const Text('Enter item expiry date'),
+            ),
 
             const SizedBox(height: 10),
 
@@ -48,20 +69,20 @@ class CheckInManually extends StatelessWidget{
         onPressed: () {
           String item = itemController.text;
           int amount = int.parse(amountController.text);
-          DateTime expiryDate = DateTime.parse(expiryDateController.text);
-          String response = listingService.addListing(item, amount, expiryDate);
-          showSimpleNotification(
-            Text(response),
-            background: Colors.purple,
-            autoDismiss: false,
-            trailing: Builder(builder: (context) {
-              return TextButton(
-                  onPressed: () {
-                    OverlaySupportEntry.of(context)!.dismiss();
-                  },
-                  child: const Text('Dismiss'));
-            }),
-          );
+          listingService.addListing(item, amount, _myDateTime).then((response){
+            showSimpleNotification(
+              Text(response),
+              background: Colors.purple,
+              autoDismiss: false,
+              trailing: Builder(builder: (context) {
+                return TextButton(
+                    onPressed: () {
+                      OverlaySupportEntry.of(context)!.dismiss();
+                    },
+                    child: const Text('Dismiss'));
+              }),
+            );
+          });
           Navigator.of(context).pop();
         },
         icon: const Icon(Icons.navigation),

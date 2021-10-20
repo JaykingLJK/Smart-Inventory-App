@@ -36,8 +36,8 @@ Page 8: Check out manually similar to Page 1
 Page 9: Check out with camera page
 
 
-4, 7, 6, 9: option page and camera: Eleen
+4, 7, 6, 9: option page and camera: Eleen -> Scanner Testing
 
-5, 8: manually check in/out: MY
+5, 8: manually check in/out: MY -> Calendar-DatePick for check-in, ListSelection for check-out
 
-models design and api call: JK
+models design and api call: JK -> Notification Testing and Integration

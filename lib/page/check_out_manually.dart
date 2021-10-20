@@ -14,15 +14,11 @@ class CheckOutManually extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Items to be checked out',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text("Check Out Manually"),
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Items to be checked out'),
-        ),
       body:Container(
         padding:const EdgeInsets.all(32),
         child: Column(
@@ -45,26 +41,26 @@ class CheckOutManually extends StatelessWidget{
     onPressed: () {
       String item = itemController.text;
       int amount = int.parse(amountController.text);
-      String response = listingService.takeListing(item, amount);
-      showSimpleNotification(
-        Text(response),
-        background: Colors.purple,
-        autoDismiss: false,
-        trailing: Builder(builder: (context) {
-          return TextButton(
-              onPressed: () {
-                OverlaySupportEntry.of(context)!.dismiss();
-              },
-              child: const Text('Dismiss'));
-        }),
-      );
+      listingService.takeListing(item, amount).then((response){
+        showSimpleNotification(
+          Text(response),
+          background: Colors.purple,
+          autoDismiss: false,
+          trailing: Builder(builder: (context) {
+            return TextButton(
+                onPressed: () {
+                  OverlaySupportEntry.of(context)!.dismiss();
+                },
+                child: const Text('Dismiss'));
+          }),
+        );
+      });
       Navigator.of(context).pop();
         },
         icon: const Icon(Icons.navigation),
         backgroundColor: Colors.green,
         label: const Text('Confirm'),
     ),
-    )
     );
   }
 }
