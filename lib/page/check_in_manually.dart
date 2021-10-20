@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/api/listing_service.dart';
 import 'package:myapp/model/listing_model.dart';
+import 'package:overlay_support/overlay_support.dart';
 
 
 class CheckInManually extends StatelessWidget{
@@ -43,22 +44,29 @@ class CheckInManually extends StatelessWidget{
           ], // []
         ), //column
       ), //container
-      floatingActionButton: FloatingActionButton(
-          onPressed: () async{
-            String item = itemController.text;
-            int amount = int.parse(amountController.text);
-            DateTime expiryDate = DateTime.parse(expiryDateController.text);
-
-            String listing = listingService.addListing(item, amount, expiryDate);
-
-            // setState(() {
-            //   _listing = listing;  //unsure of this part
-            //
-            // });
-
-          },
-          child: const Text("Confirm")
-
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          String item = itemController.text;
+          int amount = int.parse(amountController.text);
+          DateTime expiryDate = DateTime.parse(expiryDateController.text);
+          String response = listingService.addListing(item, amount, expiryDate);
+          showSimpleNotification(
+            Text(response),
+            background: Colors.purple,
+            autoDismiss: false,
+            trailing: Builder(builder: (context) {
+              return TextButton(
+                  onPressed: () {
+                    OverlaySupportEntry.of(context)!.dismiss();
+                  },
+                  child: const Text('Dismiss'));
+            }),
+          );
+          Navigator.of(context).pop();
+        },
+        icon: const Icon(Icons.navigation),
+        backgroundColor: Colors.green,
+        label: const Text('Confirm'),
       ), //Floating Action Button
     ); //Scaffold
   }

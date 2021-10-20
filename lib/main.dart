@@ -9,6 +9,7 @@ import 'package:http/http.dart' as http;
 import 'package:myapp/api/listing_service.dart';
 import 'package:myapp/page/home.dart';
 import 'package:myapp/page/listings.dart';
+import 'package:overlay_support/overlay_support.dart';
 import 'api/listing_service.dart';
 import 'model/listing_model.dart';
 
@@ -25,13 +26,15 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Smart-Inventory-System',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      debugShowCheckedModeBanner: false,
-      home: Homepage(), // Change the home page here.
+    return OverlaySupport.global(
+        child: MaterialApp(
+        title: 'Smart-Inventory-System',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        debugShowCheckedModeBanner: false,
+        home: Homepage(), // Change the home page here.
+    )
     );
   }
 }
