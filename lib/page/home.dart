@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:myapp/api/listing_service.dart';
 import 'package:myapp/model/listing_model.dart';
 import 'package:myapp/page/listings.dart';
-import 'package:myapp/page/check_in_option.dart';
-import 'package:myapp/page/check_out_option.dart';
+import 'package:myapp/page/check_in.dart';
+import 'package:myapp/page/check_out.dart';
+import 'package:myapp/page/recom_recipe.dart';
 
 class Homepage extends StatelessWidget {
   ListingService listingService = ListingService();
@@ -21,11 +22,12 @@ class Homepage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               const Text('Welcome To Smart Home Home Page',
-                  style: TextStyle(
-                    fontSize: 18.0,
-                  )),
+                style: TextStyle(
+                  fontSize: 18.0,
+                ),
+                textAlign: TextAlign.center,),
               Container(
-                padding: const EdgeInsets.all(40.0),
+                padding: const EdgeInsets.all(60.0),
                 color: Colors.grey[100],
                 child: ElevatedButton.icon(
                   onPressed: () => Navigator.of(context).push(
@@ -34,8 +36,8 @@ class Homepage extends StatelessWidget {
                     )
                 ),
                   style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(200, 50),
-                    maximumSize: const Size(200, 50),
+                    minimumSize: const Size(400, 50),
+                    maximumSize: const Size(400, 50),
                   ),
                   icon: const Icon(
                     Icons.add_circle,
@@ -48,15 +50,15 @@ class Homepage extends StatelessWidget {
                 ),
               ),
               Container(
-                padding: const EdgeInsets.all(40.0),
+                padding: const EdgeInsets.all(60.0),
                 color: Colors.grey[100],
                 child: ElevatedButton.icon(
                   onPressed: () => Navigator.of(context).push(
                     MaterialPageRoute(builder: (context)=> CheckOutOption())
                   ),
                   style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(200, 50),
-                    maximumSize: const Size(200, 50),
+                    minimumSize: const Size(400, 50),
+                    maximumSize: const Size(400, 50),
                   ),
                   icon: const Icon(
                     Icons.add_to_home_screen,
@@ -69,7 +71,7 @@ class Homepage extends StatelessWidget {
                 ),
               ),
               Container(
-                padding: const EdgeInsets.all(40.0),
+                padding: const EdgeInsets.all(60.0),
                 color: Colors.grey[100],
                 child: ElevatedButton.icon(
                   onPressed: () => Navigator.of(context).push(
@@ -78,8 +80,8 @@ class Homepage extends StatelessWidget {
                       )
                   ),
                   style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(200, 50),
-                    maximumSize: const Size(200, 50),
+                    minimumSize: const Size(400, 50),
+                    maximumSize: const Size(400, 50),
                   ),
                   icon: const Icon(
                     Icons.article_outlined,
@@ -87,6 +89,29 @@ class Homepage extends StatelessWidget {
                   ),
                   label: const Text(
                     'Item List',
+                    style: TextStyle(fontSize: 18.0),
+                  ),
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.all(60.0),
+                color: Colors.grey[100],
+                child: ElevatedButton.icon(
+                  onPressed: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                          builder: (context) => RecomRecipePage()
+                      )
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(400, 50),
+                    maximumSize: const Size(400, 50),
+                  ),
+                  icon: const Icon(
+                    Icons.update,
+                    size: 25.0,
+                  ),
+                  label: const Text(
+                    'Recipes',
                     style: TextStyle(fontSize: 18.0),
                   ),
                 ),

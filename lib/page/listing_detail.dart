@@ -21,8 +21,19 @@ class ListingDetail extends StatelessWidget{
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           String response = "Default Response";
-          listingService.deleteListing(listing).then((value){
-            response = value;
+          listingService.deleteListing(listing).then((response){
+            showSimpleNotification(
+              Text(response),
+              background: Colors.purple,
+              autoDismiss: false,
+              trailing: Builder(builder: (context) {
+                return TextButton(
+                    onPressed: () {
+                      OverlaySupportEntry.of(context)!.dismiss();
+                    },
+                    child: const Text('Dismiss'));
+              }),
+            );
           });
           Navigator.pop(context, true);
               },

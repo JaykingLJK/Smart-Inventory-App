@@ -16,7 +16,7 @@ class _CheckInManually extends State<CheckInManually>{
   final TextEditingController amountController = TextEditingController();
   ListingService listingService = ListingService();
   DateTime _myDateTime = DateTime.now();
-  String time = DateTime.now().toString();
+  String time = DateFormat('yyyy-MM-dd').format(DateTime.now()).toString();
 
   @override
   Widget build(BuildContext context){
@@ -42,7 +42,7 @@ class _CheckInManually extends State<CheckInManually>{
             ), //TextField
             Text(
                 time,
-                style: TextStyle(fontSize: 20)
+                style: const TextStyle(fontSize: 20)
             ),
             const SizedBox(height: 10),
             ElevatedButton(
@@ -54,10 +54,10 @@ class _CheckInManually extends State<CheckInManually>{
                   lastDate: DateTime(2028),
                 ))!;
                 setState((){
-                  time = DateFormat('yyyy-MM-DD').format(_myDateTime);
+                  time = DateFormat('yyyy-MM-dd').format(_myDateTime);
                 });
               },
-              child: const Text('Enter item expiry date'),
+              child: const Text('Choose item expiry date'),
             ),
 
             const SizedBox(height: 10),
