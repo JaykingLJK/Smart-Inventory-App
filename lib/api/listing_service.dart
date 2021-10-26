@@ -41,6 +41,9 @@ class ListingService {
   }
 
   Future<String> addListing(String item, int amount, DateTime expiryDate) async{
+    if (item == 'unknown'){
+      return "Error when adding the listing.";
+    }
     DateFormat dateFormat = DateFormat("yyyy-MM-dd HH:mm:ss");
     String expiryDay = dateFormat.format(expiryDate);
     var reqBody = jsonEncode({"item": item, "amount": amount, "expiry_date": expiryDay});
@@ -59,6 +62,9 @@ class ListingService {
 
 
   Future<String> takeListing(String item, int amount) async{
+    if (item == 'unknown'){
+      return "Error when taking out the listing.";
+    }
     var reqBody = jsonEncode({"item": item, "amount": amount});
     http.Response res = await http.delete(Uri.parse(urlListings), body: reqBody);
     if (res.statusCode == 200){
